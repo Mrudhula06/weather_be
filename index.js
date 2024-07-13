@@ -18,52 +18,7 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
-const weatherSchema = new mongoose.Schema({
-  cityName: String,
-  date: String, // Change type to Date if you want to store as Date object
-  minTemp: Number,
-  maxTemp: Number,
-  windSpeed: Number,
-  humidity: Number,
-  sunrise: String,
-  sunset: String,
-  feelsLike: Number,
-});
-
-const Weather = mongoose.model('Weather', weatherSchema);
-
-app.post('/api/weather', async (req, res) => {
-  try {
-    const {
-      cityName,
-      minTemp,
-      maxTemp,
-      windSpeed,
-      humidity,
-      sunrise,
-      sunset,
-      feelsLike,
-    } = req.body;
-
-    const weatherData = new Weather({
-      cityName,
-      date: new Date().toISOString(), // Example of storing the current date/time
-      minTemp,
-      maxTemp,
-      windSpeed,
-      humidity,
-      sunrise,
-      sunset,
-      feelsLike,
-    });
-
-    await weatherData.save();
-    res.status(201).json({ message: 'Weather data saved successfully' });
-  } catch (error) {
-    console.error('Error saving weather data:', error);
-    res.status(500).json({ error: 'Error saving weather data' });
-  }
-});
+// Define your schema and routes here...
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
