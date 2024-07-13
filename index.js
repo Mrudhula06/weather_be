@@ -1,4 +1,3 @@
-// index.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -37,7 +36,6 @@ app.post('/api/weather', async (req, res) => {
   try {
     const {
       cityName,
-      date,
       minTemp,
       maxTemp,
       windSpeed,
@@ -49,7 +47,7 @@ app.post('/api/weather', async (req, res) => {
 
     const weatherData = new Weather({
       cityName,
-      date,
+      date: new Date().toISOString(), // Example of storing the current date/time
       minTemp,
       maxTemp,
       windSpeed,
